@@ -1,0 +1,8 @@
+user@DESKTOP:~$ docker start -i container_name
+root@19a527989380:/# nano /usr/src/app/index.js
+root@19a527989380:/# exit
+exit
+user@DESKTOP:~$ exit
+exit
+
+Script done on 2024-03-13 08:16:23+02:00 [COMMAND_EXIT_CODE="0"]
