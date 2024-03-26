@@ -1,0 +1,81 @@
+Script started on 2024-03-26 22:12:31+02:00 [TERM="xterm-256color" TTY="/dev/pts/7" COLUMNS="120" LINES="30"]
+user@DESKTOP:~$ docker exec -it todo-backend-mongo-1 bash
+root@1173f7d3729b:/# mongosh -u root -p example
+Current Mongosh Log ID: 66032ca14065ae89aedb83af
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.0
+Using MongoDB:          7.0.7
+Using Mongosh:          2.2.0
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-03-26T20:11:52.717+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2024-03-26T20:11:53.263+00:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never' in this binary version
+   2024-03-26T20:11:53.263+00:00: vm.max_map_count is too low
+------
+
+test> show dbs
+admin         100.00 KiB
+config        108.00 KiB
+local          72.00 KiB
+the_database   72.00 KiB
+test> use the_database
+switched to db the_database
+the_database> show collections
+todos
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId('65fb497cf6066908badb83b0'),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId('65fb497cf6066908badb83b1'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('65fb4cf00cb0b60e64c3fda7'),
+    text: 'Touch grass',
+    done: true,
+    __v: 0
+  }
+]
+the_database> db.todos.insertOne({ text: "Increase the number of tools in my toolbelt", done: false })
+{
+  acknowledged: true,
+  insertedId: ObjectId('66032d124065ae89aedb83b0')
+}
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId('65fb497cf6066908badb83b0'),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId('65fb497cf6066908badb83b1'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('65fb4cf00cb0b60e64c3fda7'),
+    text: 'Touch grass',
+    done: true,
+    __v: 0
+  },
+  {
+    _id: ObjectId('66032d124065ae89aedb83b0'),
+    text: 'Increase the number of tools in my toolbelt',
+    done: false
+  }
+]
+the_database> exit
+root@1173f7d3729b:/# exit
+exit
+user@DESKTOP:~$ exit
+exit
+
+Script done on 2024-03-26 22:17:12+02:00 [COMMAND_EXIT_CODE="0"]
